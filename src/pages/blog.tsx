@@ -9,8 +9,9 @@ import Posts from '../components/Post'
 import notion from '../utils/Notion'
 
 export interface Props {
-  data: Queries.IndexQuery
+  data: Queries.BlogQuery
 }
+
 
 const Index = (props: Props) => {
   
@@ -20,10 +21,9 @@ const Index = (props: Props) => {
     <div>
       <Helmet title={siteConfig.siteTitle} />
       <SEO title="Palguno Wicaksono" description="Palguno Wicaksono" />
-      <Hero title="Hi, I'm Wicak" index />
       <h1 className='mt-10'>Tulisan Terbaru</h1>
       <div className="mb-6">
-        <Posts data={articles.slice(0,5)} showYears={false}/>
+        <Posts data={articles.slice(0,5)} showYears={true}/>
       </div>
     </div>
   )
@@ -34,7 +34,7 @@ export default Index
 Index.Layout = Layout 
 
 export const query  = graphql`
-  query Index {
+  query Blog {
     allNotion(filter: {properties: {Published: {value: {}}}}) {
     nodes {
       properties {
